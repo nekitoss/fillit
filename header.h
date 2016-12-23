@@ -6,7 +6,15 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>
+# include "./src/libft/libft.a"
 
+# define BUF_SIZE 21
+
+
+# define USAGE 1
+# define FILE_OPEN 2
+# define NOT_FULL_FIGURE 3
+# define INCORRECT_FIGURE 4
 /*
 One good way to implement algorithm X is to represent each 1 in the
 matrix A as a data object x with five fields L[x], R[x], U[x], D[x], C[x]. Rows of the matrix
@@ -26,7 +34,13 @@ serves as a master  header for all the active headers. The fields U[h], D[h], C[
 N[h] are not used.
 */
 
-
+/*
+typedef struct	figure
+{
+	int		arr[4][4];
+	char	id;
+}				fig;
+*/
 typedef struct	Node
 {
 	struct Node	*left
