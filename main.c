@@ -17,8 +17,8 @@ static void		error(int n)
 		ft_putstr("figure is wrong");
 	else if (n == INCORRECT_FIGURE)
 		ft_putstr("figure is incorrect");
-	else if (n == )
-		ft_putstr("");
+	else if (n == WRONG_NUMBER_OF_BLOCKS)
+		ft_putstr("wring_nuber_of_blocks_in_figure");
 	else if (n == )
 		ft_putstr("");
 	else if (n == )
@@ -32,27 +32,37 @@ static void		error(int n)
 	exit();
 }
 
-static void		save_figure(char *buf)
+static void		save_line(char *buf, figure *fig)
 {
-	int	i;
+	int			i;
+	int			cnt;
+	int 		line;
 
+	line = 0;
 	i = 0;
+	cnt = 0;
 	while (buf[i] != '\0')
 	{
 		if (buf[i] == '.')
-			asd
+		{
+			cnt++;
+			fig->arr[line % 4][i] = 0;
+		}
 		else if (buf[i] == '#')
 		{
-
+			cnt--;
+			fig->arr[line % 4][i] = 1;
 		}
 		else if (i == 19 && buf[19] == '\n' && buf[20] == '\n')
 			break ;
 		else if (buf[i] == '\n' && (i + 1) % 5 == 0)
-
+			line++;
 		else
 			eror(INCORRECT_FIGURE);
 		i++;
 	}
+	if (cnt != 8)
+		eror(WRONG_NUMBER_OF_BLOCKS);
 }
 
 static void		read_file(char *addr)
@@ -67,17 +77,17 @@ static void		read_file(char *addr)
 	{
 		while ()
 		{
+			ft_strclr(buf);
 			read_len = read(fd, buf, BUF_SIZE);
 			if (read_len == BUF_SIZE)
-				save_figure(buf);
+				save_line(buf);
 			else  if (read_len == BUF_SIZE - 1 || read_len == EOF)
 			{
 				printf("read_len = %d\n", read_len);
-				save_figure(buf);
+				save_line(buf);
 			}
 			else
 				eror(NOT_FULL_FIGURE);
-			read_len = read(fd, buf, BUF_SIZE);
 		}
 	}
 	else

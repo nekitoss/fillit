@@ -15,9 +15,10 @@
 # define FILE_OPEN 2
 # define NOT_FULL_FIGURE 3
 # define INCORRECT_FIGURE 4
+# define WRONG_NUMBER_OF_BLOCKS 5
 /*
 One good way to implement algorithm X is to represent each 1 in the
-matrix A as a data object x with five fields L[x], R[x], U[x], D[x], C[x]. Rows of the matrix
+matrix A as a data object x with five fields  . Rows of the matrix
 are doubly linked as circular lists via the L and R fields (“left” and “right”); columns are
 doubly linked as circular lists via the U and D fields (“up” and “down”). Each column
 list also includes a special data object called its list header.
@@ -33,45 +34,6 @@ covered. This circular list also includes a special column object called the roo
 serves as a master  header for all the active headers. The fields U[h], D[h], C[h], S[h], and
 N[h] are not used.
 */
-
-/*
-typedef struct	figure
-{
-	int		arr[4][4];
-	char	id;
-}				fig;
-*/
-typedef struct	Node
-{
-	struct Node	*left
-	struct Node	*right;
-	struct Node	*up;
-	struct Node	*down;
-	struct Row *row;
-}				Node;
-
-typedef struct	Row
-{
-	struct Node	*up;
-	struct Node	*down;
-	struct Node	*head;
-	int			length;
-	int			name;
-}				Row;
-
-typedef struct	Col
-{
-	struct Node	*left
-	struct Node	*right;
-	struct Node	*up;
-	struct Node	*down;
-	struct Node *head;
-	int 		length;
-	int			name;
-}				Col;
-
-
-/*
 typedef struct	Node
 {
 	struct Node	*left
@@ -99,5 +61,12 @@ typedef struct	Col
 	int 		length;
 	int			name;
 }				Col;
-*/
+
+typedef struct	figure
+{
+	int		arr[4][4];
+	char	id;
+	int		
+}				fig;
+
 #endif
