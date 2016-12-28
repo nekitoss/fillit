@@ -6,7 +6,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/uio.h>
-# include "./src/libft/libft.a"
+# include "libft.h"
 
 # define BUF_SIZE 21
 
@@ -36,7 +36,7 @@ N[h] are not used.
 */
 typedef struct	Node
 {
-	struct Node	*left
+	struct Node	*left;
 	struct Node	*right;
 	struct Node	*up;
 	struct Node	*down;
@@ -55,7 +55,7 @@ typedef struct	Row
 
 typedef struct	Col
 {
-	struct Node	*left
+	struct Node	*left;
 	struct Node	*right;
 	struct Node *head;
 	int 		length;
@@ -66,7 +66,7 @@ typedef struct	figure
 {
 	int		arr[4][4];
 	char	id;
-	int		
+	//int		
 }				fig;
 
 #endif
