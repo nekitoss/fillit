@@ -16,6 +16,7 @@
 # define NOT_FULL_FIGURE 3
 # define INCORRECT_FIGURE 4
 # define WRONG_NUMBER_OF_BLOCKS 5
+# define WRONG_TOUCHES 6
 /*
 One good way to implement algorithm X is to represent each 1 in the
 matrix A as a data object x with five fields  . Rows of the matrix
@@ -65,6 +66,10 @@ typedef struct	Col
 typedef struct	figure
 {
 	int		arr[4][4];
+	int		x[4];
+	int 	y[4];
+	int 	width;
+	int 	height;
 	char	id;
 	//int		
 }				fig;
