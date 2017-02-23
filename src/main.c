@@ -9,8 +9,8 @@
 
 static void		error(int n)
 {
-	ft_putstr("error");
-	exit(0);
+	//ft_putstr("error");
+	//exit(0);
 	if (n == USAGE)
 		ft_putstr("usage: fillit source_file");
 	else if (n == FILE_OPEN)
@@ -67,48 +67,6 @@ void			print_fig_list(fig **fig_arr)
 		k++;
 	}
 }
-
-// void			insert_figure(fig *figure, int i, int j)
-// {
-// 	int z;
-
-// 	z = -1;
-// 	//create_row(figure->id);
-// 	while(++z < 4)
-// 	{
-// 		figure->y[z] = i; figure->y[z] = i;
-// 		//put_node(i + figure->y[z], j + figure->x[z]);
-// 	}
-// }
-
-// void			make_matrix(fig **fig_arr, int map_size)
-// {
-// 	int i;
-// 	int j;
-// 	int k;
-// 	int z;
-
-// 	k = -1;
-// 	while(fig_arr[++k])
-// 	{
-// 		i = -1;
-// 		while (++i < 4)
-// 		{
-// 			j = -1;
-// 			while(++j < 4)
-// 			{
-// 				z = -1;
-// 				while(++z < 4)
-// 					if (!(i + fig_arr[k]->y[z] < map_size &&
-// 						j + fig_arr[k]->x[z] >= 0 &&
-// 							j + fig_arr[k]->x[z] < map_size))
-// 						break ;
-// 				if (z == 4)
-// 					insert_figure(fig_arr[k], i, j);
-// 			}
-// 		}
-// 	}
-// }
 
 void cut_figures(fig **fig_arr)
 {
@@ -252,9 +210,7 @@ static void		read_file(char *addr, int *m_size)
 
 	check_figures(fig_arr);
 	cut_figures(fig_arr);
-	//make_matrix(fig_arr);
 	print_fig_list(fig_arr);
-	//return ();
 }
 
 int				main(int argc, char **argv)
