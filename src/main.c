@@ -9,6 +9,8 @@
 
 static void		error(int n)
 {
+	ft_putstr("error");
+	exit(0);
 	if (n == USAGE)
 		ft_putstr("usage: fillit source_file");
 	else if (n == FILE_OPEN)
@@ -66,46 +68,47 @@ void			print_fig_list(fig **fig_arr)
 	}
 }
 
-void			insert_figure(fig figure, int i, int j)
-{
-	int z;
+// void			insert_figure(fig *figure, int i, int j)
+// {
+// 	int z;
 
-	z = -1;
-	create_row(figure->id);
-	while(++z < 4)
-	{
-		put_node(i + figure->y[z], j + figure->x[z]);
-	}
-}
+// 	z = -1;
+// 	//create_row(figure->id);
+// 	while(++z < 4)
+// 	{
+// 		figure->y[z] = i; figure->y[z] = i;
+// 		//put_node(i + figure->y[z], j + figure->x[z]);
+// 	}
+// }
 
-void			make_matrix(fig **fig_arr, int map_size)
-{
-	int i;
-	int j;
-	int k;
-	int z;
+// void			make_matrix(fig **fig_arr, int map_size)
+// {
+// 	int i;
+// 	int j;
+// 	int k;
+// 	int z;
 
-	k = -1;
-	while(fig_arr[++k])
-	{
-		i = -1;
-		while (++i < 4)
-		{
-			j = -1;
-			while(++j < 4)
-			{
-				z = -1;
-				while(++z < 4)
-					if (!(i + fig_arr[k]->y[z] < map_size &&
-						j + fig_arr[k]->x[z] >= 0 &&
-							j + fig_arr[k]->x[z] < map_size))
-						break ;
-				if (z == 4)
-					insert_figure(fig_arr[k], i, j);
-			}
-		}
-	}
-}
+// 	k = -1;
+// 	while(fig_arr[++k])
+// 	{
+// 		i = -1;
+// 		while (++i < 4)
+// 		{
+// 			j = -1;
+// 			while(++j < 4)
+// 			{
+// 				z = -1;
+// 				while(++z < 4)
+// 					if (!(i + fig_arr[k]->y[z] < map_size &&
+// 						j + fig_arr[k]->x[z] >= 0 &&
+// 							j + fig_arr[k]->x[z] < map_size))
+// 						break ;
+// 				if (z == 4)
+// 					insert_figure(fig_arr[k], i, j);
+// 			}
+// 		}
+// 	}
+// }
 
 void cut_figures(fig **fig_arr)
 {
@@ -209,7 +212,7 @@ static void		save_line(char *buf, fig *fig)
 		error(WRONG_NUMBER_OF_BLOCKS);
 }
 
-static void		read_file(char *addr)
+static void		read_file(char *addr, int *m_size)
 {
 	int		fd;
 	int		read_len;
@@ -226,6 +229,7 @@ static void		read_file(char *addr)
 		while ((read_len = read(fd, buf, BUF_SIZE)) == BUF_SIZE && i < 26)
 		{
 			fig_arr[i] = (fig *)malloc(sizeof(fig) * 1);
+			(fig_arr[i])->map_size = m_size;
 			(fig_arr[i])->id = i;
 			save_line(buf, fig_arr[i]);
 			ft_strclr(buf);
@@ -234,6 +238,7 @@ static void		read_file(char *addr)
 		if (i > 0 && i < 26 && read_len  == BUF_SIZE - 1)
 		{
 			fig_arr[i] = (fig *)malloc(sizeof(fig) * 1);
+			(fig_arr[i])->map_size = m_size;
 			(fig_arr[i])->id = i;
 			save_line(buf, fig_arr[i++]);
 		}
@@ -247,18 +252,23 @@ static void		read_file(char *addr)
 
 	check_figures(fig_arr);
 	cut_figures(fig_arr);
-	make_matrix(fig_arr);
+	//make_matrix(fig_arr);
 	print_fig_list(fig_arr);
 	//return ();
 }
 
 int				main(int argc, char **argv)
 {
+	int	*m_size;
+
+	m_size = (int *)malloc(sizeof(int));
+
     //printf("test");
 	//add usage
+
 	if (argc == 2)
 	{
-		read_file(argv[1]);
+		read_file(argv[1], m_size);
 	}
 	else
 		error(USAGE);
