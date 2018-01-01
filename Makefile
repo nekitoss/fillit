@@ -11,14 +11,28 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRC_DIR = ./src/
-OBJ_DIR = ./obj/
-INC_DIR = ./inc/
+SRC_DIR = ./
+OBJ_DIR = ./
+INC_DIR = ./
 LIB_DIR = ./libft/
-LIB_INC = $(LIB_DIR)inc/
+LIB_INC = $(LIB_DIR)
 LIB_LIB = $(LIB_DIR)libft.a
 
-OBJ	=   main.o
+OBJ	=   check.o \
+		fillit_core.o \
+		fillit_find_dot.o \
+		fillit.o \
+		ft_bzero2.o \
+		ft_memalloc2.o \
+		map_control.o \
+		map_delete.o \
+		map_generate.o \
+		map_print.o \
+		map_size.o \
+		save_line.o \
+		tetromino_delete.o \
+		tetromino_set.o
+
 
 LIB = $(LIB_DIR)libft.a
 
